@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+/* ─── Theme Variables ─────────────────────────── */
+:root {
+  --bg-gradient-from: #fff5f5;
+  --bg-gradient-to: #f0f4ff;
+  --glass-bg: rgba(255, 255, 255, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  --text-primary: #1a1a2e;
+  --text-secondary: #6b7280;
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --focus-color: #ff6b6b;
+  --focus-gradient: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  --break-color: #4ecdc4;
+  --break-gradient: linear-gradient(135deg, #4ecdc4, #45b7d1);
+  --active-color: var(--focus-color);
+  --active-gradient: var(--focus-gradient);
+}
+
+.dark {
+  --bg-gradient-from: #0f0f23;
+  --bg-gradient-to: #1a1a3e;
+  --glass-bg: rgba(30, 30, 60, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --text-primary: #e8e8e8;
+  --text-secondary: #8892b0;
+  --card-bg: rgba(30, 30, 60, 0.6);
+}
+
+/* ─── Base ────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(135deg, var(--bg-gradient-from), var(--bg-gradient-to));
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background 0.6s ease;
+}
+
+/* ─── Glass Card ──────────────────────────────── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+/* ─── Theme Toggle ────────────────────────────── */
+.theme-toggle {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  border-radius: 13px;
+  cursor: pointer;
+  border: none;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  transition: background 0.3s ease;
+}
+
+.theme-toggle .thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: transform 0.3s ease;
+  background: var(--card-bg);
+}
+
+.theme-toggle.dark .thumb {
+  transform: translateX(22px);
+}
+
+/* ─── Number Animation ────────────────────────── */
+@keyframes timerPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.timer-pop {
+  animation: timerPop 0.2s ease;
+}
+
+/* ─── Task Complete Glow ──────────────────────── */
+@keyframes taskGlow {
+  0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+
+.task-glow {
+  animation: taskGlow 0.6s ease;
+}
+
+/* ─── Scrollbar ──────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--glass-border);
+  border-radius: 4px;
+}
+
+/* ─── Transition container for Framer Motion ─── */
+.main-transition {
+  transition: background 0.5s ease;
+}
